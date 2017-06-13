@@ -11,6 +11,7 @@ Features:
  * Inline Assembly: introduce ``keccak256`` as an opcode. ``sha3`` is still a valid alias.
  * Inline Assembly: ``for`` and ``switch`` statements.
  * Inline Assembly: function definitions and function calls.
+ * Inline Assembly: Warn when using ``jump``s.
  * Code Generator: Added the Whiskers template system.
  * Remove obsolete Why3 output.
 
