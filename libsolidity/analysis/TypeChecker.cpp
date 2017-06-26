@@ -964,9 +964,17 @@ bool TypeChecker::visit(VariableDeclarationStatement const& _statement)
 				{
 					int numBits = type->numBits();
 					bool isSigned = type->isSigned();
+					string minValue;
+					string maxValue;
 					if (isSigned)
+					{
 						numBits--;
-					extension = ", which can hold values up to " + string((u256(1) << numBits) - 1);
+						minValue = "-" + string(u256(1) << numBits);
+					}
+					else
+						minValue = "0";
+					maxValue = string((u256(1) << numBits) - 1);
+					extension = ", which can hold values between " + minValue + " and " + maxValue;
 				}
 				else
 					solAssert(dynamic_cast<FixedPointType const*>(var.annotation().type.get()), "Unknown type.");
