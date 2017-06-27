@@ -274,10 +274,11 @@ void ContractCompiler::appendFunctionSelector(ContractDefinition const& _contrac
 		eth::AssemblyItem returnTag = m_context.pushNewTag();
 		fallback->accept(*this);
 		m_context << returnTag;
-		m_context.adjustStackOffset(
-			CompilerUtils(m_context).sizeOnStack(FunctionType(*fallback).returnParameterTypes()) - 1
-		);
-		appendReturnValuePacker(FunctionType(*fallback).returnParameterTypes(), _contract.isLibrary());
+		solAssert(FunctionType(*fallback).parameterTypes().empty(), "");
+		solAssert(FunctionType(*fallback).returnParameterTypes().empty(), "");
+		// Return tag gets consumed.
+		m_context.adjustStackOffset(-1);
+		m_context << Instruction::STOP;
 	}
 	else
 		m_context.appendRevert();
