@@ -44,7 +44,16 @@ rm -f soljson.js
 ln -s $REPO_ROOT/build/solc/soljson.js soljson.js
 
 # Update version (needed for some tests)
-VERSION=`$REPO_ROOT/build/solc/solc --version | sed -ne "s/^Version: \([0-9]*.[0-9]*.[0-9]*\).*/\1/p"`
+rm -f version version.c
+cat <<EOF > version.c
+#include <stdio.h>
+#include "../include/solidity/BuildInfo.h"
+int main(int argc, char **argv) {
+  printf(ETH_PROJECT_VERSION);
+}
+EOF
+gcc -o version version.c
+VERSION=`./version`
 echo "Updating package.json to version $VERSION"
 npm version $VERSION
 
