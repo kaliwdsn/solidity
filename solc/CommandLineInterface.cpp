@@ -87,6 +87,7 @@ static string const g_strInterface = "interface";
 static string const g_strLibraries = "libraries";
 static string const g_strLink = "link";
 static string const g_strMetadata = "metadata";
+static string const g_strMetadataDisable = "metadata-disable";
 static string const g_strNatspecDev = "devdoc";
 static string const g_strNatspecUser = "userdoc";
 static string const g_strOpcodes = "opcodes";
@@ -131,6 +132,7 @@ static string const g_argSignatureHashes = g_strSignatureHashes;
 static string const g_argVersion = g_strVersion;
 static string const g_stdinFileName = g_stdinFileNameStr;
 static string const g_argMetadataLiteral = g_strMetadataLiteral;
+static string const g_argMetadataDisable = g_strMetadataDisable;
 
 /// Possible arguments to for --combined-json
 static set<string> const g_combinedJsonArgs{
@@ -176,6 +178,7 @@ static bool needsHumanTargetedStdout(po::variables_map const& _args)
 		g_argCloneBinary,
 		g_argFormal,
 		g_argMetadata,
+                g_argMetadataDisable,
 		g_argNatspecUser,
 		g_argNatspecDev,
 		g_argOpcodes,
@@ -545,6 +548,7 @@ Allowed options)",
 		(g_argMetadataLiteral.c_str(), "Store referenced sources are literal data in the metadata output.");
 	po::options_description outputComponents("Output Components");
 	outputComponents.add_options()
+                (g_argMetadataDisable.c_str(), "Disable on-chain metadata inclusion in compiled objects.")
 		(g_argAst.c_str(), "AST of all source files.")
 		(g_argAstJson.c_str(), "AST of all source files in JSON format.")
 		(g_argAsm.c_str(), "EVM assembly of the contracts.")
@@ -667,6 +671,8 @@ bool CommandLineInterface::processInput()
 	{
 		if (m_args.count(g_argMetadataLiteral) > 0)
 			m_compiler->useMetadataLiteralSources(true);
+                if (m_args.count(g_argMetadataDisable) > 0)
+                        m_compiler->disableOnChainMetadata(true);
 		if (m_args.count(g_argInputFile))
 			m_compiler->setRemappings(m_args[g_argInputFile].as<vector<string>>());
 		for (auto const& sourceCode: m_sourceCodes)

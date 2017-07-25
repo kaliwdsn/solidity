@@ -180,6 +180,7 @@ public:
 	Json::Value const& metadata(std::string const& _contractName, DocumentationType _type) const;
 	std::string const& onChainMetadata(std::string const& _contractName) const;
 	void useMetadataLiteralSources(bool _metadataLiteralSources) { m_metadataLiteralSources = _metadataLiteralSources; }
+        void disableOnChainMetadata(bool _disableOnChainMetadata) { m_disableOnChainMetadata = _disableOnChainMetadata; }
 
 	/// @returns the previously used scanner, useful for counting lines during error reporting.
 	Scanner const& scanner(std::string const& _sourceName = "") const;
@@ -279,6 +280,8 @@ private:
 	std::string m_formalTranslation;
 	ErrorList m_errors;
 	bool m_metadataLiteralSources = false;
+        bool m_disableOnChainMetadata = false;
+ 
 };
 
 }
