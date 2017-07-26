@@ -178,7 +178,6 @@ static bool needsHumanTargetedStdout(po::variables_map const& _args)
 		g_argCloneBinary,
 		g_argFormal,
 		g_argMetadata,
-                g_argMetadataDisable,
 		g_argNatspecUser,
 		g_argNatspecDev,
 		g_argOpcodes,

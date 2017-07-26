@@ -281,7 +281,7 @@ private:
 	ErrorList m_errors;
 	bool m_metadataLiteralSources = false;
         bool m_disableOnChainMetadata = false;
- 
+
 };
 
 }
