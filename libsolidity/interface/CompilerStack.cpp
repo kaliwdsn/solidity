@@ -643,6 +643,7 @@ void CompilerStack::compileContract(
 	// 16-bit big endian length
 		cborEncodedMetadata += toCompactBigEndian(cborEncodedMetadata.size(), 2);
 	}
+	
 	compiler->compileContract(_contract, _compiledContracts, cborEncodedMetadata);
 	compiledContract.compiler = compiler;
 	compiledContract.object = compiler->assembledObject();
