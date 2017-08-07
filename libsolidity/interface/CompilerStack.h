@@ -173,7 +173,8 @@ public:
 	/// Can be one of 4 types defined at @c DocumentationType
 	Json::Value const& metadata(std::string const& _contractName, DocumentationType _type) const;
 	std::string const& onChainMetadata(std::string const& _contractName) const;
-
+	void disableOnChainMetadata(bool _disableOnChainMetadata) { m_disableOnChainMetadata = _disableOnChainMetadata; }
+	
 	/// @returns the previously used scanner, useful for counting lines during error reporting.
 	Scanner const& scanner(std::string const& _sourceName = "") const;
 	/// @returns the parsed source unit with the supplied name.
@@ -273,6 +274,8 @@ private:
 	std::map<std::string const, Contract> m_contracts;
 	std::string m_formalTranslation;
 	ErrorList m_errors;
+	
+	bool m_disableOnChainMetadata = false;
 };
 
 }
