@@ -32,7 +32,7 @@ eth_simple_add_executable(${EXECUTABLE} ${SRC_LIST} ${HEADERS})
 eth_use(${EXECUTABLE} REQUIRED Solidity::solidity Solidity::lll)
 
 include_directories(BEFORE ..)
-target_link_libraries(${EXECUTABLE} ${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES})
+target_link_libraries(${EXECUTABLE} devcore ${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES})
 
 enable_testing()
 set(CTEST_OUTPUT_ON_FAILURE TRUE)
