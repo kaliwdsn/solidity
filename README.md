@@ -1,3 +1,5 @@
+# DEPRECATED. Please refer to https://github.com/ethereum/solidity
+
 # The Solidity Contract-Oriented Programming Language
 [![Join the chat at https://gitter.im/ethereum/solidity](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ethereum/solidity?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
